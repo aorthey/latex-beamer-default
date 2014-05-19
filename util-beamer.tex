@@ -1,0 +1,118 @@
+\xdefinecolor{darkgreen}{rgb}{0,0.60,0}
+
+\tikzset{zlevel/.style={%
+execute at begin scope={\pgfonlayer{#1}},
+execute at end scope={\endpgfonlayer}
+}}
+%%% tikzstyles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzstyle{taskRect}=[draw, color=black!70, fill=black!7, rectangle, rounded
+corners, thick, minimum width=3cm, minimum height=0.6cm]
+\tikzstyle{borderRect}=[draw, color=red!70, fill=gray!7, rectangle, rounded
+corners, thick, minimum width=8cm, minimum height=3cm]
+\tikzstyle{testBRect}=[draw, color=darkgreen!100, fill=gray!7, rectangle, rounded
+corners, thick, minimum width=8cm, minimum height=3cm]
+\tikzstyle{stdBR}=[draw, color=black!100, fill=gray!7, rectangle, rounded
+corners, thick, minimum width=8cm, minimum height=3cm]
+\tikzstyle{boundingBox}=[draw, color=red!100, fill=gray!7, rectangle, rounded
+corners, thick, minimum width=3cm, minimum height=1cm]
+\tikzstyle{arrow}=[->, draw, thick]
+\tikzstyle{darrow}=[->, draw, ultra thick]
+\tikzstyle{uarrow}=[-, draw, ultra thick]
+\tikzstyle{hlBox}=[draw, color=red!70, fill=black!7, rectangle, rounded
+corners, ultra thick, minimum width=3cm, minimum height=0.6cm]
+\tikzstyle{nUnit}=[draw, color=black!70, fill=black!7, circle, rounded
+corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\framepicture[1]{
+\begin{center}
+		\begin{tikzpicture}
+			\node[taskRect] at (0,3) {
+			\begin{minipage}[t][4cm]{7cm}
+		\includegraphics[width=1.0\linewidth, height=0.9\linewidth]{#1} 
+		\end{minipage}
+		};
+	\end{tikzpicture}
+\end{center}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\drawDirectedGraph[2]{
+\node[nUnit] (h) at (#2,#1) {h};
+\node[nUnit] (v1) at (#2-1,#1-2) {v1};
+\node[nUnit] (v2) at (#2+1,#1-2) {v2};
+\draw[darrow] (v1) -- (h);
+\draw[darrow] (v2) -- (h);
+\draw[darrow] (h) -- (#2,#1+1);
+}
+\newcommand\drawUndirectedGraph[2]{
+	\node[nUnit] (uh) at (#2,#1) {h};
+	\node[nUnit] (uv1) at (#2-1,#1-2) {v1};
+	\node[nUnit] (uv2) at (#2+1,#1-2) {v2};
+	\draw[uarrow] (uv1) -- (uh);
+	\draw[uarrow] (uv2) -- (uh);
+}
+\newcommand\drawRBM[2]{
+	\node[nUnit] (uh0) at (#2-1.5,#1) {h0};
+	\node[nUnit] (uh1) at (#2,#1) {h1};
+	\node[nUnit] (uh2) at (#2+1.5,#1) {h2};
+	\node[nUnit] (uv1) at (#2-1,#1-2) {v1};
+	\node[nUnit] (uv2) at (#2+1,#1-2) {v2};
+	\draw[uarrow] (uv1) -- (uh0);
+	\draw[uarrow] (uv1) -- (uh1);
+	\draw[uarrow] (uv1) -- (uh2);
+	\draw[uarrow] (uv2) -- (uh0);
+	\draw[uarrow] (uv2) -- (uh1);
+	\draw[uarrow] (uv2) -- (uh2);
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\frametikzboxthree[4]{
+\begin{center}
+	\begin{tikzpicture}
+		\node[stdBR] at (2,3){
+		\begin{minipage}[t][6cm]{10cm} 
+			#1
+			\vfill
+		\end{minipage}
+		};
+		\node[taskRect] at (2,4.5) {#2};
+		\pause
+		\node[taskRect] at (2,3) {#3};
+		\pause
+		\node[taskRect] at (2,1.5) {#4};
+	\end{tikzpicture}
+\end{center}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\frametikzboxfour[5]{
+\begin{center}
+	\begin{tikzpicture}
+		\node[stdBR] at (2,3){
+		\begin{minipage}[t][6cm]{10cm} 
+			#1
+			\vfill
+		\end{minipage}
+		};
+		\node[taskRect] at (2,4.5) {#2};
+		\pause
+		\node[taskRect] at (2,3.5) {#3};
+		\pause
+		\node[taskRect] at (2,2.5) {#4};
+		\pause
+		\node[taskRect] at (2,1.5) {#5};
+	\end{tikzpicture}
+\end{center}
+}
+\newcommand\frametikzboxtwo[3]{
+\begin{center}
+	\begin{tikzpicture}
+		\node[stdBR] at (2,3){
+		\begin{minipage}[t][4cm]{9cm} 
+			#1
+			\vfill
+		\end{minipage}
+		};
+		\node[taskRect] at (2,3.5) {#2};
+		\pause
+		\node[taskRect] at (2,2) {#3};
+	\end{tikzpicture}
+\end{center}
+}
