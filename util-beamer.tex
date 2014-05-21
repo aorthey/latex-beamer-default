@@ -8,6 +8,15 @@ execute at end scope={\endpgfonlayer}
 \setbeamercolor{itemize item}{fg=black}  
 \setbeamertemplate{itemize item}[triangle]  
 
+\usetikzlibrary{positioning}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
 %%% tikzstyles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tikzstyle{taskRect}=[draw, color=black!70, fill=black!7, rectangle, rounded
 corners, thick, minimum width=3cm, minimum height=0.6cm]
