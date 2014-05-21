@@ -12,57 +12,6 @@
 \usepackage{subfigure} %spacing for table of contents
 \usepackage{multimedia} %videos inside frame
 
-\def\R{ \ensuremath{\mathcal{R}} }
-\def\C{ \ensuremath{\mathcal{C}} }
-\def\SV{ \ensuremath{\mathcal{SV}} }
-\newcommand{\Psiag}{\Psi_{\alpha\rightarrow \gamma}}
-\newcommand{\Psiaq}{\Psi_{\alpha\rightarrow q}}
-\newcommand{\Psiqb}{\Psi_{q \rightarrow \beta}}
-\newcommand{\Psibb}{\Psi_{\beta^K \rightarrow \beta}}
-\newcommand{\Psibg}{\Psi_{\beta \rightarrow \gamma}}
-\newcommand\motionprimitive{ {\cal{P}}}
-\newcommand\mopr{ {\cal{P}}}
-\newcommand\mpstar{\motionprimitive^{\star}}
-
-\setbeamercolor{alerted text}{fg=orange}
-\setbeamercolor{background canvas}{bg=white}
-\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
-\setbeamercolor{block body}{bg=normal text.bg!90!black}
-\setbeamercolor{block body example}{bg=normal text.bg!90!black}
-\setbeamercolor{block title}{bg=blue}
-\setbeamercolor{fine separation line}{}
-\setbeamercolor{frametitle}{fg=black,bg=gray!30}
-\setbeamercolor{item projected}{fg=black}
-\setbeamercolor{normal text}{bg=black,fg=black}
-\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
-\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
-\setbeamercolor{section in sidebar}{fg=black}
-\setbeamercolor{section in sidebar shaded}{fg= grey}
-\setbeamercolor{separation line}{}
-\setbeamercolor{sidebar}{bg=red}
-\setbeamercolor{sidebar}{parent=palette primary}
-\setbeamercolor{structure}{bg=black, fg=red}
-\setbeamercolor{subsection in sidebar}{fg=black}
-\setbeamercolor{subsection in sidebar shaded}{fg=grey}
-\setbeamercolor{title}{fg=black!100,bg=gray!30}
-\setbeamercolor{titlelike}{fg=brown}
-
-%several template parameters
-\setbeamertemplate{frametitle}[default][center]
-\setbeamertemplate{blocks}[rounded][shadow=true]
-%\beamertemplateshadingbackground{white!20}{black!20}
-\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=white!25]
-\setbeamertemplate{sidebar canvas left}[horizontal shading][left=white!40!black,right=black]
-\setbeamercolor{footline in sidebar}{fg=black}%[page number]
-%\setbeamertemplate{footline}[frame number]
-
-%suppress navigational bar
-\beamertemplatenavigationsymbolsempty
-%experimental stuff
-\setbeamertemplate{title page}[default][rounded=true,shadow=true]
-
 \setlength{\unitlength}{\textwidth}  % measure in textwidths
 \begin{document}
 \title{Robotics, Motion Planning}
@@ -72,7 +21,7 @@
 
 \frame{\titlepage} 
 
-\input{util-beamer.tex}
+\input{latex-beamer-default/util-beamer.tex}
 
 \frame{
 \frametitle{Introduction}

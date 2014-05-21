@@ -16,6 +16,53 @@ execute at end scope={\endpgfonlayer}
 \tikzset{temporal/.code args={<#1>#2#3#4}{%
   \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
 }}
+\def\R{ \ensuremath{\mathcal{R}} }
+\def\C{ \ensuremath{\mathcal{C}} }
+\def\SV{ \ensuremath{\mathcal{SV}} }
+
+%%% custom beamer template  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{beamerthemesplit} % new 
+\usetheme{Berlin}
+\usecolortheme{beaver}
+
+\setbeamercolor{alerted text}{fg=orange}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!90!black}
+\setbeamercolor{block body example}{bg=normal text.bg!90!black}
+\setbeamercolor{block title}{bg=blue}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{frametitle}{fg=black,bg=gray!30}
+\setbeamercolor{item projected}{fg=black}
+\setbeamercolor{normal text}{bg=black,fg=black}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{section in sidebar}{fg=black}
+\setbeamercolor{section in sidebar shaded}{fg= grey}
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=red}
+\setbeamercolor{sidebar}{parent=palette primary}
+\setbeamercolor{structure}{bg=black, fg=red}
+\setbeamercolor{subsection in sidebar}{fg=black}
+\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+\setbeamercolor{title}{fg=black!100,bg=gray!30}
+\setbeamercolor{titlelike}{fg=brown}
+
+%several template parameters
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+%\beamertemplateshadingbackground{white!20}{black!20}
+\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=white!25]
+\setbeamertemplate{sidebar canvas left}[horizontal shading][left=white!40!black,right=black]
+\setbeamercolor{footline in sidebar}{fg=black}%[page number]
+%\setbeamertemplate{footline}[frame number]
+
+%suppress navigational bar
+\beamertemplatenavigationsymbolsempty
+%experimental stuff
+\setbeamertemplate{title page}[default][rounded=true,shadow=true]
 
 %%% tikzstyles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tikzstyle{taskRect}=[draw, color=black!70, fill=black!7, rectangle, rounded
