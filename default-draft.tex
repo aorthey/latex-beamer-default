@@ -1,9 +1,6 @@
 %\documentclass[handout]{beamer} %% use handout to draw complete presentation
 \documentclass{beamer}
 \usepackage{graphicx} %for jpg files
-\usepackage{beamerthemesplit} % new 
-\usetheme{Berlin}
-\usecolortheme{beaver}
 \usepackage{tikz}%tikz figures
 \usepackage{graphicx}
 \usepackage{multirow}
@@ -11,6 +8,8 @@
 \usepackage{multimedia}
 \usepackage{subfigure} %spacing for table of contents
 \usepackage{multimedia} %videos inside frame
+
+\input{util-beamer.tex}
 
 \setlength{\unitlength}{\textwidth}  % measure in textwidths
 \begin{document}
@@ -20,8 +19,6 @@
 \date{\today} 
 
 \frame{\titlepage} 
-
-\input{util-beamer.tex}
 
 \frame{
 \frametitle{Introduction}
@@ -37,12 +34,13 @@
   \end{columns}
 }
 \frame{\frametitle{Picture} 
-        \framepicture{hrp2.jpg}
+  \framepicture{hrp2.jpg}
 }
 
 \frame{\frametitle{Conclusion} 
 \begin{itemize}
-\item 
+\item Real-time
+\item Or not real-time
 \end{itemize}
 }
 
