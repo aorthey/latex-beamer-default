@@ -8,9 +8,7 @@
 execute at begin scope={\pgfonlayer{#1}},
 execute at end scope={\endpgfonlayer}
 }}
-\setbeamercolor{enumerate item}{fg=black}  
-\setbeamercolor{itemize item}{fg=black}  
-\setbeamertemplate{itemize item}[triangle]  
+
 
 \usetikzlibrary{positioning}
 
@@ -22,18 +20,18 @@ execute at end scope={\endpgfonlayer}
 }}
 \def\R{ \ensuremath{\mathcal{R}} }
 \def\C{ \ensuremath{\mathcal{C}} }
-\def\SV{ \ensuremath{\mathcal{SV}} }
 
 
 \setbeamercolor{alerted text}{fg=orange}
 \setbeamercolor{background canvas}{bg=white}
 \setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
-\setbeamercolor{block body}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=gray!10,fg=black}
 \setbeamercolor{block body example}{bg=normal text.bg!90!black}
-\setbeamercolor{block title}{bg=blue}
+\setbeamercolor{block title}{bg=gray!40!white,fg=black}
+\setbeamerfont{block title}{size=\large}
+
 \setbeamercolor{fine separation line}{}
 \setbeamercolor{frametitle}{fg=black,bg=gray!30}
-\setbeamercolor{item projected}{fg=black}
 \setbeamercolor{normal text}{bg=black,fg=black}
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
 \setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
@@ -49,6 +47,11 @@ execute at end scope={\endpgfonlayer}
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
 \setbeamercolor{title}{fg=black!100,bg=gray!30}
 \setbeamercolor{titlelike}{fg=brown}
+
+\setbeamertemplate{itemize item}[default]  
+\setbeamercolor{enumerate item}{fg=black}  
+\setbeamercolor{itemize item}{fg=black}  
+\setbeamercolor{item projected}{bg=gray!30!white,fg=white}
 
 %several template parameters
 \setbeamertemplate{frametitle}[default][center]
