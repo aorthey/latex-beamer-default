@@ -1,8 +1,27 @@
 %%% custom beamer template  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{beamerthemesplit} % new 
+\usepackage{eso-pic}
 \usetheme{Berlin}
 \usecolortheme{beaver}
+\usepackage{transparent}
 \xdefinecolor{darkgreen}{rgb}{0,0.60,0}
+
+\newcommand\logoLeftFoot{beamer/logo/ARCnotext.png}
+\newcommand\logoRightFoot{beamer/logo/wpi.png}
+
+\titlegraphic{
+        \def\wLogo{2cm}
+        \raisebox{-0.5\height}{
+        \includegraphics[width=0.4\linewidth,height=0.2\linewidth]{\logoLeftFoot}
+        }
+        \hspace*{0.2cm}
+        \raisebox{-0.5\height}{
+        \includegraphics[width=0.4\linewidth,height=0.15\linewidth]{\logoRightFoot}
+        }
+
+        %\hspace*{0.2cm}
+        %\includegraphics[width=\wLogo,height=\wLogo]{img/logo/INPT.jpg}
+}
 
 \tikzset{zlevel/.style={%
 execute at begin scope={\pgfonlayer{#1}},
@@ -68,11 +87,22 @@ execute at end scope={\endpgfonlayer}
 %suppress navigational bar
 \beamertemplatenavigationsymbolsempty
 %experimental stuff
-\setbeamertemplate{title page}[default][rounded=true,shadow=true]
+
+%\setbeamerfont{footline}{size=\fontsize{10}{12}\selectfont}
+
+
+
 
 %%% tikzstyles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tikzstyle{taskRect}=[draw, color=black!70, fill=black!7, rectangle, rounded
 corners, thick, minimum width=3cm, minimum height=0.6cm]
+\tikzset{
+        taskRectH/.style={taskRect, alt=<#1>{color=black!100, fill=black!25, thick, rounded corners}{}, anchor=base},
+        taskRectH/.default=+,
+        cSphereH/.style={cSphere, alt=<#1>{color=black!100, fill=black!25, thick, rounded corners}{}, anchor=base},
+        cSphereH/.default=+,
+}
+
 \tikzstyle{borderRect}=[draw, color=red!70, fill=gray!7, rectangle, rounded
 corners, thick, minimum width=8cm, minimum height=3cm]
 \tikzstyle{testBRect}=[draw, color=darkgreen!100, fill=gray!7, rectangle, rounded
@@ -91,13 +121,13 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\framepicture[1]{
 \begin{center}
-		\begin{tikzpicture}
-			\node[taskRect] at (0,3) {
-			\begin{minipage}[t][4cm]{7cm}
-		\includegraphics[width=1.0\linewidth, height=0.9\linewidth]{#1} 
-		\end{minipage}
-		};
-	\end{tikzpicture}
+                \begin{tikzpicture}
+                        \node[taskRect] at (0,3) {
+                        \begin{minipage}[t][4cm]{7cm}
+                \includegraphics[width=1.0\linewidth, height=0.9\linewidth]{#1} 
+                \end{minipage}
+                };
+        \end{tikzpicture}
 \end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,75 +140,198 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
 \draw[darrow] (h) -- (#2,#1+1);
 }
 \newcommand\drawUndirectedGraph[2]{
-	\node[nUnit] (uh) at (#2,#1) {h};
-	\node[nUnit] (uv1) at (#2-1,#1-2) {v1};
-	\node[nUnit] (uv2) at (#2+1,#1-2) {v2};
-	\draw[uarrow] (uv1) -- (uh);
-	\draw[uarrow] (uv2) -- (uh);
+        \node[nUnit] (uh) at (#2,#1) {h};
+        \node[nUnit] (uv1) at (#2-1,#1-2) {v1};
+        \node[nUnit] (uv2) at (#2+1,#1-2) {v2};
+        \draw[uarrow] (uv1) -- (uh);
+        \draw[uarrow] (uv2) -- (uh);
 }
 \newcommand\drawRBM[2]{
-	\node[nUnit] (uh0) at (#2-1.5,#1) {h0};
-	\node[nUnit] (uh1) at (#2,#1) {h1};
-	\node[nUnit] (uh2) at (#2+1.5,#1) {h2};
-	\node[nUnit] (uv1) at (#2-1,#1-2) {v1};
-	\node[nUnit] (uv2) at (#2+1,#1-2) {v2};
-	\draw[uarrow] (uv1) -- (uh0);
-	\draw[uarrow] (uv1) -- (uh1);
-	\draw[uarrow] (uv1) -- (uh2);
-	\draw[uarrow] (uv2) -- (uh0);
-	\draw[uarrow] (uv2) -- (uh1);
-	\draw[uarrow] (uv2) -- (uh2);
+        \node[nUnit] (uh0) at (#2-1.5,#1) {h0};
+        \node[nUnit] (uh1) at (#2,#1) {h1};
+        \node[nUnit] (uh2) at (#2+1.5,#1) {h2};
+        \node[nUnit] (uv1) at (#2-1,#1-2) {v1};
+        \node[nUnit] (uv2) at (#2+1,#1-2) {v2};
+        \draw[uarrow] (uv1) -- (uh0);
+        \draw[uarrow] (uv1) -- (uh1);
+        \draw[uarrow] (uv1) -- (uh2);
+        \draw[uarrow] (uv2) -- (uh0);
+        \draw[uarrow] (uv2) -- (uh1);
+        \draw[uarrow] (uv2) -- (uh2);
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\frametikzboxthree[4]{
 \begin{center}
-	\begin{tikzpicture}
-		\node[stdBR] at (2,3){
-		\begin{minipage}[t][6cm]{10cm} 
-			#1
-			\vfill
-		\end{minipage}
-		};
-		\node[taskRect] at (2,4.5) {#2};
-		\pause
-		\node[taskRect] at (2,3) {#3};
-		\pause
-		\node[taskRect] at (2,1.5) {#4};
-	\end{tikzpicture}
+        \begin{tikzpicture}
+                \node[stdBR] at (2,3){
+                \begin{minipage}[t][6cm]{10cm} 
+                        #1
+                        \vfill
+                \end{minipage}
+                };
+                \node[taskRect] at (2,4.5) {#2};
+                \pause
+                \node[taskRect] at (2,3) {#3};
+                \pause
+                \node[taskRect] at (2,1.5) {#4};
+        \end{tikzpicture}
 \end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\frametikzboxfour[5]{
 \begin{center}
-	\begin{tikzpicture}
-		\node[stdBR] at (2,3){
-		\begin{minipage}[t][6cm]{10cm} 
-			#1
-			\vfill
-		\end{minipage}
-		};
-		\node[taskRect] at (2,4.5) {#2};
-		\pause
-		\node[taskRect] at (2,3.5) {#3};
-		\pause
-		\node[taskRect] at (2,2.5) {#4};
-		\pause
-		\node[taskRect] at (2,1.5) {#5};
-	\end{tikzpicture}
+        \begin{tikzpicture}
+                \node[stdBR] at (2,3){
+                \begin{minipage}[t][6cm]{10cm} 
+                        #1
+                        \vfill
+                \end{minipage}
+                };
+                \node[taskRect] at (2,4.5) {#2};
+                \pause
+                \node[taskRect] at (2,3.5) {#3};
+                \pause
+                \node[taskRect] at (2,2.5) {#4};
+                \pause
+                \node[taskRect] at (2,1.5) {#5};
+        \end{tikzpicture}
 \end{center}
 }
 \newcommand\frametikzboxtwo[3]{
 \begin{center}
-	\begin{tikzpicture}
-		\node[stdBR] at (2,3){
-		\begin{minipage}[t][4cm]{9cm} 
-			#1
-			\vfill
-		\end{minipage}
-		};
-		\node[taskRect] at (2,3.5) {#2};
-		\pause
-		\node[taskRect] at (2,2) {#3};
-	\end{tikzpicture}
+        \begin{tikzpicture}
+                \node[stdBR] at (2,3){
+                \begin{minipage}[t][4cm]{9cm} 
+                        #1
+                        \vfill
+                \end{minipage}
+                };
+                \node[taskRect] at (2,3.5) {#2};
+                \pause
+                \node[taskRect] at (2,2) {#3};
+        \end{tikzpicture}
 \end{center}
+}
+\useoutertheme{split}
+\setbeamertemplate{navigation symbols}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{title page}[default][rounded=true,shadow=true]
+
+\pgfdeclareimage[width=\paperwidth,height=\paperheight]{titlepage}{img/Wanderer_above_the_sea_Caspar_David_Friedrich.jpg}
+\defbeamertemplate*{title page}{customized}[1][rounded=true,shadow=true]
+{
+        %\usebeamerfont{title}\inserttitle\par
+        %\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+        %\bigskip
+        %\usebeamerfont{author}\insertauthor\par
+        %\usebeamerfont{institute}\insertinstitute\par
+        %\usebeamerfont{date}\insertdate\par
+        %\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+        %\includegraphics[width=\paperwidth,height=0.8\paperheight]
+        %{img/Wanderer_above_the_sea_Caspar_David_Friedrich.jpg}
+        \begin{picture}(0,0)
+
+            \put(-0.1,-0.51){
+                    %\pgfuseimage{titlepage}
+            }
+            \put(-0.2,0.0){%
+
+                \begin{tikzpicture}
+                        \node[taskRect] at (0,0) {
+                                \hspace*{1cm}
+                        \begin{minipage}[45mm]{10cm}
+                                \centering\LARGE Exploiting Structure\\in Humanoid Motion
+                                Planning
+                                \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+                        \end{minipage}
+                        };
+                        
+                \end{tikzpicture}
+            }
+
+            \put(0.1,-0.5){%
+
+                \begin{tikzpicture}
+                        \node[taskRect] at (0,0) {
+                        \begin{minipage}[45mm]{3cm}
+                                \usebeamerfont{author}\insertauthor\par
+                                \usebeamerfont{institute}\insertinstitute\par
+                                \usebeamerfont{date}\insertdate\par
+                        \end{minipage}
+                        \begin{minipage}[45mm]{9cm}
+                                \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+                        \end{minipage}
+                        };
+                        
+                \end{tikzpicture}
+            }
+
+    \end{picture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADLINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{%
+\leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}%
+    \insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll}
+    \end{beamercolorbox}%
+  }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FOOTLINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+        \def\heightF{4ex}
+        \def\depthF{2.5ex}
+        \begin{beamercolorbox}[wd=.35\paperwidth,rounded=5cm,ht=\heightF,dp=\depthF,center]{author in head/foot}%
+                \raisebox{-0.35\height}{\includegraphics[width=1.3cm]{\logoLeftFoot}}
+                \hspace*{0.2cm}
+                \usebeamerfont{author in head/foot}\insertshortauthor
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.45\paperwidth,ht=\heightF,dp=\depthF,center]{title in head/foot}%
+                \hspace*{0.3cm}\usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+                %\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.2\paperwidth,ht=\heightF,dp=\depthF,center]{date in head/foot}%
+                \insertframenumber{} / \inserttotalframenumber{}
+                \hspace*{0.05cm}
+                \raisebox{-0.35\height}{\includegraphics[height=0.45cm,width=1.2cm]{\logoRightFoot}}
+        \end{beamercolorbox}}
+        \vskip0pt%
+}
+
+
+\newcommand\xcite[2]{
+        \begin{center}
+        \footnotesize
+        {\color{black!75}
+        [*]\textit{"#1"}\\
+        --- #2}
+        \end{center}
+}
+
+\newcommand\mycite[2]{
+        \begin{center}
+        \footnotesize
+        [*]\textit{"#1"}\\
+        --- #2
+        \end{center}
+}
+
+\newcommand\headline[1]{
+                
+        \begin{center}
+                \begin{tikzpicture}
+                        \node[taskRect,minimum width=9cm,minimum height=3cm] at
+                        (0,0) {\Huge #1};
+                \end{tikzpicture}
+        \end{center}
 }
