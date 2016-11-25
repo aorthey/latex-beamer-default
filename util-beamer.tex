@@ -7,7 +7,7 @@
 \xdefinecolor{darkgreen}{rgb}{0,0.60,0}
 
 \newcommand\logoLeftFoot{beamer/logo/ARCnotext.png}
-\newcommand\logoRightFoot{beamer/logo/wpi.png}
+%\newcommand\logoRightFoot{beamer/logo/wpi.png}
 
 \titlegraphic{
         \def\wLogo{2cm}
@@ -66,6 +66,10 @@ execute at end scope={\endpgfonlayer}
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
 \setbeamercolor{title}{fg=black!100,bg=gray!30}
 \setbeamercolor{titlelike}{fg=brown}
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry journal}{fg=black}
+\setbeamercolor*{bibliography entry title}{fg=black}
 
 \setbeamertemplate{itemize item}[default]  
 \setbeamercolor{enumerate item}{fg=black}  
@@ -219,7 +223,7 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{title page}[default][rounded=true,shadow=true]
 
-\pgfdeclareimage[width=\paperwidth,height=\paperheight]{titlepage}{img/Wanderer_above_the_sea_Caspar_David_Friedrich.jpg}
+%\pgfdeclareimage[width=\paperwidth,height=\paperheight]{titlepage}{img/Wanderer_above_the_sea_Caspar_David_Friedrich.jpg}
 \defbeamertemplate*{title page}{customized}[1][rounded=true,shadow=true]
 {
         %\usebeamerfont{title}\inserttitle\par
@@ -236,14 +240,13 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
             \put(-0.1,-0.51){
                     %\pgfuseimage{titlepage}
             }
-            \put(-0.2,0.0){%
+            \put(-40,0.0){%
 
                 \begin{tikzpicture}
                         \node[taskRect] at (0,0) {
                                 \hspace*{1cm}
                         \begin{minipage}[45mm]{10cm}
-                                \centering\LARGE Exploiting Structure\\in Humanoid Motion
-                                Planning
+                                \centering\LARGE \inserttitle
                                 \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
                         \end{minipage}
                         };
@@ -251,18 +254,19 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
                 \end{tikzpicture}
             }
 
-            \put(0.1,-0.5){%
+            \put(130,-100.5){%
 
                 \begin{tikzpicture}
                         \node[taskRect] at (0,0) {
-                        \begin{minipage}[45mm]{3cm}
+                        \begin{minipage}[75mm]{8cm}
+                                \centering
                                 \usebeamerfont{author}\insertauthor\par
                                 \usebeamerfont{institute}\insertinstitute\par
                                 \usebeamerfont{date}\insertdate\par
                         \end{minipage}
-                        \begin{minipage}[45mm]{9cm}
-                                \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
-                        \end{minipage}
+                        %\begin{minipage}[45mm]{9cm}
+                                %\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+                        %\end{minipage}
                         };
                         
                 \end{tikzpicture}
@@ -291,19 +295,19 @@ corners, ultra thick, minimum width=1cm, minimum height=0.2cm]
   \hbox{%
         \def\heightF{4ex}
         \def\depthF{2.5ex}
-        \begin{beamercolorbox}[wd=.35\paperwidth,rounded=5cm,ht=\heightF,dp=\depthF,center]{author in head/foot}%
-                \raisebox{-0.35\height}{\includegraphics[width=1.3cm]{\logoLeftFoot}}
+        \begin{beamercolorbox}[wd=.20\paperwidth,rounded=5cm,ht=\heightF,dp=\depthF,center]{author in head/foot}%
+                %\raisebox{-0.35\height}{\includegraphics[width=1.3cm]{\logoLeftFoot}}
                 \hspace*{0.2cm}
                 \usebeamerfont{author in head/foot}\insertshortauthor
         \end{beamercolorbox}%
-        \begin{beamercolorbox}[wd=.45\paperwidth,ht=\heightF,dp=\depthF,center]{title in head/foot}%
+        \begin{beamercolorbox}[wd=.60\paperwidth,ht=\heightF,dp=\depthF,center]{title in head/foot}%
                 \hspace*{0.3cm}\usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
                 %\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
         \end{beamercolorbox}%
         \begin{beamercolorbox}[wd=.2\paperwidth,ht=\heightF,dp=\depthF,center]{date in head/foot}%
                 \insertframenumber{} / \inserttotalframenumber{}
                 \hspace*{0.05cm}
-                \raisebox{-0.35\height}{\includegraphics[height=0.45cm,width=1.2cm]{\logoRightFoot}}
+                %\raisebox{-0.35\height}{\includegraphics[height=0.45cm,width=1.2cm]{\logoRightFoot}}
         \end{beamercolorbox}}
         \vskip0pt%
 }
